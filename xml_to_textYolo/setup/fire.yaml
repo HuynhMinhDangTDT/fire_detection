@@ -1,0 +1,8 @@
+# train: ./data/fire/train/images
+# val: ./data/fire/valid/images
+# path: C:/Users/PC/Desktop/local_code/python_local_code/project_thay_linh/fire_detection/xml_to_textYolo/yolov5/data/fire
+train: C:\Users\PC\Desktop\local_code\python_local_code\project_thay_linh\fire_detection\xml_to_textYolo\yolov5\mydata\images\train
+val: C:\Users\PC\Desktop\local_code\python_local_code\project_thay_linh\fire_detection\xml_to_textYolo\yolov5\mydata\images\valid
+
+nc: 1
+names: ['fire']
