@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-Time Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <canvas id="chart"></canvas>
+    {% block content %}
+        <h1>Temperature</h1>
+        <form action = "{% url 'dashboard' %}">
+            {% csrf_token %}
+            {% comment %} <strong><label class = "form-check-label" for = "validateFormCheck1" name = "username">{{ username }}</label></strong> {% endcomment %}
+            <strong><label class = "form-check-label" for = "validateFormCheck1" name = "temp">Nhiệt độ bây giờ là: {{ temp }}°C</label></strong>
+            <br/>
+            <strong><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></strong>
+            <br/>
+
+            {% comment %} <br/> {% endcomment %}
+            {% comment %} <a href="fe/" class="btn btn-outline-success">Create Form FeedBack</a> {% endcomment %}
+            {% comment %} <br/><br/> {% endcomment %}
+            {% comment %} <hr> {% endcomment %}
+            {% comment %} {% for item in all %} {% endcomment %}
+                {% comment %} <tr> {% endcomment %}
+                {% comment %} <td><a href="update/{{ item.id }}">{{ item.topic_select.name}}</a></td> {% endcomment %}
+                {% comment %} <td>Create at: {{ item.created_at }}<br/></td> {% endcomment %}
+                {% comment %} <td><strong name = "UserName" value = {{item.UserName}}></strong><br/></td> {% endcomment %}
+                {% comment %} </tr> {% endcomment %}
+
+                {% comment %} <hr> {% endcomment %}
+
+            {% comment %} {% endfor %} {% endcomment %}
+        </form> 
+        {% comment %} <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a> {% endcomment %}
+    {% endblock %}
+    <script>
+        // JavaScript code to update the chart in real-time
+        // Fetch data from the server
+        {% comment %} function fetchData() { {% endcomment %}
+            // AJAX code to fetch data
+            // Update the chart with the fetched data
+            {% comment %} var temp = document.getElementById('Temp'); {% endcomment %}
+            {% comment %} Temp.innerHTML+={{temp}}; {% endcomment %}
+        {% comment %} } {% endcomment %}
+        // Update the chart every few seconds
+        {% comment %} setInterval(fetchData, 1000); {% endcomment %}
+        window.setTimeout(function () {
+            location.href = "http://127.0.0.1:8000/dashboard/";
+        }, 1000); // refresh/redirect after 5 seconds.
+    </script>
+</body>
+</html>
