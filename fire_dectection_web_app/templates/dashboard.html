@@ -2,19 +2,233 @@
 <html>
 <head>
     <title>Real-Time Dashboard</title>
+    <meta charset="utf-8">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <style>
+        html, body{
+            margin: 0;
+        }
+        .heading{   
+            background-image: url(https://i.upanh.org/2024/01/06/Hac4d19d2c6583b81.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            width: 100vw;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-items: space-around;
+            align-items: center;
+        }
+        .heading_list{
+            padding-left: 0;
+            margin: auto 16px;  
+        }
+        .heading_items{
+            list-style: none;
+            margin: 0;
+            display: inline-block;
+            font-size: 20;
+        }
+        /* .icon{
+            margin-left:16px;
+            width: 50px;
+            height: 50px;
+            background-image: url(https://i.upanh.org/2024/01/09/NBK562ffdd7756746c9.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        } */
+        .pic{ 
+            position: absolute;
+            top: 20%;
+            left:34%;
+            width: 400px;
+            height: 250px;
+            border-style: solid;
+            border-color: rgb(197, 197, 197);
+            border-width: 5px;
+            border-radius: 10px;
+            background-image: url(https://img.upanh.tv/2024/01/06/pic.jpg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .box{
+            width:100%;
+            display: inline-flex;
+            justify-content: space-between;
+        }
+        .box1{
+            margin-top: 20px;
+            margin-left: 20px;
+            width: 350px;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            border-style: hidden;
+            border-radius: 40px;
+            box-shadow: 0 0 30px rgb(54, 141, 203);
+            background-color: rgb(180, 224, 255);
+        }  
+        .box2{
+            margin-top: 20px;
+            margin-right:20px;
+            width: 350px;
+            height: 450px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            border-style: hidden;
+            border-radius: 40px;
+            box-shadow: 0 0 30px rgb(54, 141, 203);
+            background-color: rgb(180, 224, 255);
+        }
+        .icon_1{
+            width: 75px;
+            height: 75px;
+            background-image: url(https://img.upanh.tv/2024/01/12/clouds-and-sun.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon_2{
+            width: 75px;
+            height: 75px;
+            background-image: url(https://img.upanh.tv/2024/01/10/humidity.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }  
+        .icon_4{
+            width: 75px;
+            height: 75px;
+            background-image: url(https://img.upanh.tv/2024/01/10/thermometer.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .icon_5{
+            width: 75px;
+            height: 75px;
+            background-image: url(https://img.upanh.tv/2024/01/12/clock.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        /* .icon_6{
+            position: relative;
+            margin-top:20px;
+            width: 75px;
+            height: 75px;
+            background-image: url(https://img.upanh.tv/2024/01/10/warning.png);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        } */
+        .list{
+            display: contents;
+            list-style: none;
+        }
+        .btn{
+            display: inline-block;
+            text-decoration: none;
+            outline: none;
+            color: #000000;
+            padding: 30px 30px;
+            border-radius: 100px;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+        }
+        .btn_open:hover{
+            background-color: #00ff95;
+            border-color: #00ff95;
+        }
+        .btn_close:hover{
+            background-color: #ff0000;
+            border-color: #ff0000;   
+        }
+        .btn_open{
+            position: absolute;
+            top: 65%;
+            left: 35%;
+            background-color: #55ffb8;
+            border-color: #00ff95;
+            border-width: 10px;
+        }
+        .btn_close{
+            position: absolute;
+            top: 65%;
+            right: 35%;
+            background-color: #ff6666;
+            border-color: #ff0000;
+            border-width: 10px;
+        }
+        .state{ 
+            position: absolute;      
+            top: 600px;
+            left: 440px;
+        }
+    </style>
 </head>
 <body>
-    <canvas id="chart"></canvas>
+    <!-- <canvas id="chart"></canvas> -->
     {% block content %}
-        <h1>Temperature</h1>
+    <div class="heading">
+        <ul class="heading_list fs-4"><li class="heading_items"><strong>Ứng dụng công nghệ AI nhằm tối ưu hóa công dụng và tính năng của giếng trời thông minh</strong></li></ul>
+        <ul class="heading_list fs-5"><li class="heading_items"><strong>Nguyễn Gia Phúc - Nguyễn Thanh Phú</strong></li></ul>
+        <ul class="heading_list"><li class="heading_items">Lớp 11T2 - Trường THPT chuyên Nguyễn Bỉnh Khiêm</li></ul>
+        <!-- <div class="icon"></div> -->
+    </div>
+    <div class="box">
+        <div class="box box1">
+            <label class="fs-3"><strong>Thời tiết</strong></label>
+            <ul class="list">
+                <li><div class="icon_1"></div></li>
+                <li><div class="fs-4">Nắng</div></li>
+            </ul>
+            <label class="fs-3"><strong>Độ ẩm</strong></label>
+            <ul class="list">
+                <li><div class="icon_2"></div></li>
+                <li><div class="fs-4">Nan%</div></li>
+            </ul>
+        </div>
+        <div class="box box2">
+            <label class="fs-3"><strong>Nhiệt độ</strong></label>
+            <ul class="list">
+                <li><div class="icon_4"></div></li>
+                <li><div class="fs-4"><label class = "form-check-label" for = "validateFormCheck1" name = "temp"> {{ temp }}°C</label></div></li>
+            </ul>
+            <label class="fs-3"><strong>Thời điểm</strong></label>
+            <ul class="list">
+                <li><div class="icon_5"></div></li>
+                <li><div class="fs-4">Ban ngày</div></li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <button type="button" class="btn btn_open"><strong>Đóng giếng</strong></button>
+        <button type="button" class="btn btn_close"><strong>Mở giếng</strong></button>
+    </div>
+    <ul>
+        <div class="icon_6"></div>
+        <div class="state fs-4"><strong><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></strong></div>
+    </ul>
+    <div class="pic"></div>
+        <!-- <h1>Temperature</h1> -->
         <form action = "{% url 'dashboard' %}">
             {% csrf_token %}
             {% comment %} <strong><label class = "form-check-label" for = "validateFormCheck1" name = "username">{{ username }}</label></strong> {% endcomment %}
-            <strong><label class = "form-check-label" for = "validateFormCheck1" name = "temp">Nhiệt độ bây giờ là: {{ temp }}°C</label></strong>
+            <!-- <strong><label class = "form-check-label" for = "validateFormCheck1" name = "temp">Nhiệt độ bây giờ là: {{ temp }}°C</label></strong>
             <br/>
             <strong><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></strong>
-            <br/>
+            <br/> -->
 
             {% comment %} <br/> {% endcomment %}
             {% comment %} <a href="fe/" class="btn btn-outline-success">Create Form FeedBack</a> {% endcomment %}
@@ -46,7 +260,7 @@
         {% comment %} setInterval(fetchData, 1000); {% endcomment %}
         window.setTimeout(function () {
             location.href = "http://127.0.0.1:8000/dashboard/";
-        }, 1000); // refresh/redirect after 5 seconds.
+        }, 2000); // refresh/redirect after 5 seconds.
     </script>
 </body>
 </html>

@@ -1,11 +1,13 @@
 from django.shortcuts import render
-from server_smart_skylight import  server
+# from server_smart_skylight import  server
 
 def dashboard(request):
     # Temperature = 'a'
-    data = next(server())
-    temperature = data["temperature"]
-    message = data["message"]
+    # data = next(server())
+    # temperature = data["temperature"]
+    # message = data["message"]
+    temperature = "nan"
+    message = "..."
     # print(data["temperature"])
     # print(data["message"])
     # for item in server():
@@ -13,7 +15,7 @@ def dashboard(request):
     # print(next(server())[0])
     # print(next(server())[1])
     if message == 'lua':
-        message = "Nhà đang có cháy"
+        message = "Đang cháy nhà"
     else:
         message = "An toàn"
     
