@@ -8,7 +8,7 @@ from django.http import JsonResponse
 from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
-# from server_smart_skylight import  server
+from server_smart_skylight import  server
 
 def LoginPage(request):
     if request.method=='POST':
@@ -35,14 +35,14 @@ def LogoutPage(request):
 def dashboard(request):
     # Temperature = 'a'
     # string_mode_dieu_khien = ""
-    # data = next(server())
-    # temperature = data["temperature"]
-    # humidity = data["humidity"]
-    # photoresistor = data["photoresistor"]
-    # rain = data["rain"]
-    # ultrasonic = data["ultrasonic"]
+    data = next(server())
+    temperature = data["temperature"]
+    humidity = data["humidity"]
+    photoresistor = data["photoresistor"]
+    rain = data["rain"]
+    ultrasonic = data["ultrasonic"]
     # mode_dieu_khien = data["mode_dieu_khien"]
-    # message = data["message"]
+    message = data["message"]
     
     
     # print(type(mode_dieu_khien))
@@ -67,13 +67,13 @@ def dashboard(request):
     
     #bắt đầu dữ liệu ảo
 
-    temperature = "35"
-    humidity = "80"
-    photoresistor = "2000"
-    rain = "1"
-    ultrasonic = "37"
+    # temperature = "35"
+    # humidity = "80"
+    # photoresistor = "2000"
+    # rain = "1"
+    # ultrasonic = "37"
     # mode_dieu_khien = data["mode_dieu_khien"]
-    message = ""
+    # message = ""
     
     message_thoi_tiet = ""
     message_thoi_diem = ""
