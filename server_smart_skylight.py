@@ -177,6 +177,7 @@ def server():
                 
             # print(message)
             message_encode = message.encode()
+            message_dieu_khien_encode = message_dieu_khien.encode()
             # sock.send(message_encode)
 
             time.sleep(1.5)
@@ -203,7 +204,7 @@ def server():
                 }
                 # print(type(mang_ket_qua[5]))
                 sock.send(message_encode)
-                
+                sock.send(message_dieu_khien_encode)
                 print(message_encode)
             if message == "lua":
                 with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:

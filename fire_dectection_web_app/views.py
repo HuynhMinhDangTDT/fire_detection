@@ -31,7 +31,7 @@ def LogoutPage(request):
     return redirect('login')
 
 
-@login_required(login_url='login')
+# @login_required(login_url='login')
 def dashboard(request):
     # Temperature = 'a'
     # string_mode_dieu_khien = ""
@@ -122,13 +122,13 @@ def dashboard(request):
 
         
     # print(message == "" and int(ultrasonic) < 36)
-    if message == 'lua'and int(ultrasonic) > 36:
+    if message == 'lua'and int(float(ultrasonic)) > 36:
         message = "Nhà đang có cháy"
-    elif message == "" and int(ultrasonic) < 36:
+    elif message == "" and int(float(ultrasonic)) < 36:
         message = "Có trộm đột nhập"
-    elif message == 'lua' and int(ultrasonic) < 36:
+    elif message == 'lua' and int(float(ultrasonic)) < 36:
         message = "Nhà đang có cháy và có trộm đột nhập"
-    elif  message == "" and int(ultrasonic) > 36:
+    elif  message == "" and int(float(ultrasonic)) > 36:
         message = "An toàn"
     
     # return render(request, 'dashboard.html', {'temp': data})
