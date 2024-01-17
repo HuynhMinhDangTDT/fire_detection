@@ -198,90 +198,60 @@
     </style>
 </head>
 <body>
+    
     <!-- <canvas id="chart"></canvas> -->
     {% block content %}
-    <div class="heading">
-        <ul class="heading_list fs-4"><li class="heading_items"><strong>Ứng dụng công nghệ AI nhằm tối ưu hóa công dụng và tính năng của giếng trời thông minh</strong></li></ul>
-        <ul class="heading_list fs-5"><li class="heading_items"><div class="font">Nguyễn Gia Phúc - Nguyễn Thanh Phú</div></li></ul>
-        <ul class="heading_list"><li class="heading_items">Lớp 11T2 - Trường THPT chuyên Nguyễn Bỉnh Khiêm</li></ul>
-        <!-- <div class="icon"></div> -->
-    </div>
-    <div class="box">
-        <div class="box box1">
-            <label class="fs-3"><strong>Thời tiết</strong></label>
-            <ul class="list">
-                <li><div class="icon_1"></div></li>
-                <li><div class="fs-4">Nắng</div></li>
-            </ul>
-            <label class="fs-3"><strong>Độ ẩm</strong></label>
-            <ul class="list">
-                <li><div class="icon_2"></div></li>
-                <li><div class="fs-4">Nan%</div></li>
-            </ul>
+        <div class="heading">
+            <ul class="heading_list fs-4"><li class="heading_items"><strong>Ứng dụng công nghệ AI nhằm tối ưu hóa công dụng và tính năng của giếng trời thông minh</strong></li></ul>
+            <ul class="heading_list fs-5"><li class="heading_items"><div class="font">Nguyễn Gia Phúc - Nguyễn Thanh Phú</div></li></ul>
+            <ul class="heading_list"><li class="heading_items">Lớp 11T2 - Trường THPT chuyên Nguyễn Bỉnh Khiêm</li></ul>
+            <!-- <div class="icon"></div> -->
         </div>
-        <div class="box box2">
-            <label class="fs-3"><strong>Nhiệt độ</strong></label>
-            <ul class="list">
-                <li><div class="icon_4"></div></li>
-                <li><div class="fs-4"><label class = "form-check-label" for = "validateFormCheck1" name = "temp"> {{ temp }}°C</label></div></li>
-            </ul>
-            <label class="fs-3"><strong>Thời điểm</strong></label>
-            <ul class="list">
-                <li><div class="icon_5"></div></li>
-                <li><div class="fs-4">Ban ngày</div></li>
-            </ul>
+    <form method="post" action = "{% url 'dashboard' %}">
+        {% csrf_token %}
+        <div class="box">
+            <div class="box box1">
+                <label class="fs-3"><strong>Thời tiết</strong></label>
+                <ul class="list">
+                    <li><div class="icon_1"></div></li>
+                    <li><div class="fs-4"><label class = "form-check-label" for = "validateFormCheck1" name = "message_thoi_tiet">{{ message_thoi_tiet }}</label></div></li>
+                </ul>
+                <label class="fs-3"><strong>Độ ẩm</strong></label>
+                <ul class="list">
+                    <li><div class="icon `_2"></div></li>
+                    <li><div class="fs-4" ><label class = "form-check-label" for = "validateFormCheck1" name = "hum">Độ ẩm hiện tại: {{ hum }} Fh</label></div></li>
+                </ul>
+            </div>
+            <div class="box box2">
+                <label class="fs-3"><strong>Nhiệt độ</strong></label>
+                <ul class="list">
+                    <li><div class="icon_4"></div></li>
+                    <li><div class="fs-4"><label class = "form-check-label" for = "validateFormCheck1" name = "temp"> {{ temp }}°C</label></div></li>
+                </ul>
+                <label class="fs-3" ><strong>Thời điểm</strong></label>
+                <ul class="list">
+                    <li><div class="icon_5"></div></li>
+                    <li><div class="fs-4"><label class = "form-check-label" for = "validateFormCheck1" name = "message_thoi_diem">{{ message_thoi_diem }}</label></div></li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <div>
-        <button type="button" class="btn btn_open"><strong>Đóng giếng</strong></button>
-        <button type="button" class="btn btn_close"><strong>Mở giếng</strong></button>
-    </div>
-    <ul>
-        <div class="icon_6"></div>
-        <div class="state fs-3"><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></div>
-    </ul>
-    <div id="time" class="fs-5"></div>
-    <div class="pic"></div>
-        <!-- <h1>Temperature</h1> -->
-        <form action = "{% url 'dashboard' %}">
-            {% csrf_token %}
-            {% comment %} <strong><label class = "form-check-label" for = "validateFormCheck1" name = "username">{{ username }}</label></strong> {% endcomment %}
-            <!-- <strong><label class = "form-check-label" for = "validateFormCheck1" name = "temp">Nhiệt độ bây giờ là: {{ temp }}°C</label></strong>
-            <br/>
-            <strong><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></strong>
-            <br/> -->
-
-            {% comment %} <br/> {% endcomment %}
-            {% comment %} <a href="fe/" class="btn btn-outline-success">Create Form FeedBack</a> {% endcomment %}
-            {% comment %} <br/><br/> {% endcomment %}
-            {% comment %} <hr> {% endcomment %}
-            {% comment %} {% for item in all %} {% endcomment %}
-                {% comment %} <tr> {% endcomment %}
-                {% comment %} <td><a href="update/{{ item.id }}">{{ item.topic_select.name}}</a></td> {% endcomment %}
-                {% comment %} <td>Create at: {{ item.created_at }}<br/></td> {% endcomment %}
-                {% comment %} <td><strong name = "UserName" value = {{item.UserName}}></strong><br/></td> {% endcomment %}
-                {% comment %} </tr> {% endcomment %}
-
-                {% comment %} <hr> {% endcomment %}
-
-            {% comment %} {% endfor %} {% endcomment %}
-        </form> 
+        <div>
+            <button type="submit" class="btn btn_close" name="dong_gieng" value="dong_gieng"><strong>Đóng giếng</strong></button>
+            <button type="submit" class="btn btn_open" name="mo_gieng" value="mo_gieng"><strong>Mở giếng</strong></button>
+        </div>
+        <ul>
+            <div class="icon_6"></div>
+            <div class="state fs-3"><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></div>
+        </ul>
+        <div id="time" class="fs-5"></div>
+        <div class="pic"></div>
+    </form> 
         {% comment %} <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a> {% endcomment %}
     {% endblock %}
     <script>
-        // JavaScript code to update the chart in real-time
-        // Fetch data from the server
-        {% comment %} function fetchData() { {% endcomment %}
-            // AJAX code to fetch data
-            // Update the chart with the fetched data
-            {% comment %} var temp = document.getElementById('Temp'); {% endcomment %}
-            {% comment %} Temp.innerHTML+={{temp}}; {% endcomment %}
-        {% comment %} } {% endcomment %}
-        // Update the chart every few seconds
-        {% comment %} setInterval(fetchData, 1000); {% endcomment %}
         window.setTimeout(function () {
             location.href = "http://127.0.0.1:8000/dashboard/";
-        }, 2000); // refresh/redirect after 5 seconds.
+        }, 500); // refresh/redirect after 5 seconds.
         function dongho() {
             var time = new Date();
             var gio = time.getHours();
