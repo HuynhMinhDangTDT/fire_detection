@@ -13,6 +13,8 @@
     <style>
         html, body{
             margin: 0;
+            background: #305197;
+            -webkit-text-stroke: 0.3px #ffffff;
         }
         .heading{   
             background-image: url(https://i.upanh.org/2024/01/06/Hac4d19d2c6583b81.png);
@@ -46,7 +48,7 @@
             background-position: center;
         } */
         .pic{ 
-            position: absolute;
+            position: fixed;
             top: 20%;
             left:34%;
             width: 400px;
@@ -145,8 +147,11 @@
             display: inline-block;
             text-decoration: none;
             outline: none;
+            width: 100px;
+            height: 100px;
             color: #000000;
-            padding: 30px 30px;
+            /* padding: 30px 30px; */
+            clip-path: circle(50% at 50% 50%);
             border-radius: 100px;
             cursor: pointer;
             transition: opacity 0.2s ease;
@@ -176,14 +181,14 @@
             border-width: 10px;
         }
         .state{ 
-            position: absolute;      
-            top: 600px;
-            left: 410px;
-            font-weight: 600;
+            position: fixed; 
+            bottom: 20px;     
+            margin-left: 20px;
+            font-weight: 700;
         }
         #time{
-            position: absolute;
-            top: 390px;
+            position: fixed;
+            top: 56%;
             left: 47%;
             padding: 10px;
             font-family: verdana;
@@ -195,6 +200,23 @@
         .font{
             font-weight: 600;
         }
+        .logout{
+            margin-top: 30px;
+            margin-left: 90%;
+            display: flex;
+            width: 100px;
+            height: 50px;
+            background: white;
+            color: black;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 20px;
+            align-items: center;
+            justify-content: center;
+        }
+        .logout:hover{
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
@@ -204,7 +226,7 @@
         <div class="heading">
             <ul class="heading_list fs-4"><li class="heading_items"><strong>Ứng dụng công nghệ AI nhằm tối ưu hóa công dụng và tính năng của giếng trời thông minh</strong></li></ul>
             <ul class="heading_list fs-5"><li class="heading_items"><div class="font">Nguyễn Gia Phúc - Nguyễn Thanh Phú</div></li></ul>
-            <ul class="heading_list"><li class="heading_items">Lớp 11T2 - Trường THPT chuyên Nguyễn Bỉnh Khiêm</li></ul>
+            <ul class="heading_list fs-5"><li class="heading_items">Lớp 11T2 - Trường THPT chuyên Nguyễn Bỉnh Khiêm</li></ul>
             <!-- <div class="icon"></div> -->
         </div>
     <form method="post" action = "{% url 'dashboard' %}">
@@ -218,7 +240,7 @@
                 </ul>
                 <label class="fs-3"><strong>Độ ẩm</strong></label>
                 <ul class="list">
-                    <li><div class="icon `_2"></div></li>
+                    <li><div class="icon_2"></div></li>
                     <li><div class="fs-4" ><label class = "form-check-label" for = "validateFormCheck1" name = "hum">Độ ẩm hiện tại: {{ hum }} Fh</label></div></li>
                 </ul>
             </div>
@@ -239,19 +261,20 @@
             <button type="submit" class="btn btn_close" name="dong_gieng" value="dong_gieng"><strong>Đóng giếng</strong></button>
             <button type="submit" class="btn btn_open" name="mo_gieng" value="mo_gieng"><strong>Mở giếng</strong></button>
         </div>
-        <ul>
-            <div class="icon_6"></div>
-            <div class="state fs-3"><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></div>
-        </ul>
+
         <div id="time" class="fs-5"></div>
+        <div><a class="logout" href="http://127.0.0.1:8000/login/">Đăng xuất</a></div>
         <div class="pic"></div>
     </form> 
-        {% comment %} <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a> {% endcomment %}
+<footer>
+    <div class="state fs-3"><label class = "form-check-label" for = "validateFormCheck1" name = "mess">Tình trạng nhà hiện tại: {{ mess }}</label></div>
+</footer>
+        <!-- {% comment %} <a href="{% url 'logout' %}" class="btn btn-primary">Logout</a> {% endcomment %} -->
     {% endblock %}
     <script>
         window.setTimeout(function () {
-            //location.href = "http://127.0.0.1:8000/dashboard/";
-            location.href = "https://7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app/dashboard/";
+            location.href = "http://127.0.0.1:8000/dashboard/";
+            // location.href = "https://7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app/dashboard/";
         }, 500); // refresh/redirect after 5 seconds.
         function dongho() {
             var time = new Date();
