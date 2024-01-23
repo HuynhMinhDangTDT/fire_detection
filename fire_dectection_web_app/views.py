@@ -33,37 +33,14 @@ def LogoutPage(request):
 
 # @login_required(login_url='login')
 def dashboard(request):
-    # Temperature = 'a'
-    # string_mode_dieu_khien = ""
+
     data = next(server())
     temperature = data["temperature"]
     humidity = data["humidity"]
     photoresistor = data["photoresistor"]
     rain = data["rain"]
     ultrasonic = data["ultrasonic"]
-    # mode_dieu_khien = data["mode_dieu_khien"]
     message = data["message"]
-    
-    
-    # print(type(mode_dieu_khien))
-    # if mode_dieu_khien == "0":
-        # string_mode_dieu_khien = "auto"
-    # elif mode_dieu_khien == "1":
-        # string_mode_dieu_khien = "manual"
-    # temperature = "35"
-    # message = "nan"
-    
-    # print(data["temperature"])
-    # print(data["message"])
-    # for item in server():
-    #     print(item)
-    # print(next(server())[0])
-    # print(next(server())[1])
-    # if request.POST.get("auto"):
-    #     print("che do auto")
-    # elif request.POST.get("manual"):  # You can use else in here too if there is only 2 submit types.
-    #     print("che do manual")
-    
     
     #bắt đầu dữ liệu ảo
 
@@ -72,7 +49,6 @@ def dashboard(request):
     # photoresistor = "2000"
     # rain = "1"
     # ultrasonic = "37"
-    # mode_dieu_khien = data["mode_dieu_khien"]
     # message = ""
     
     message_thoi_tiet = ""
@@ -102,13 +78,13 @@ def dashboard(request):
         if request.POST.get("auto"):
             message_dieu_khien = "auto"
             print("che do auto")
-        elif request.POST.get("manual"):  # You can use else in here too if there is only 2 submit types.
+        elif request.POST.get("manual"):
             message_dieu_khien = "manual"
             print("che do manual")
-        elif request.POST.get("mo_gieng"):  # You can use else in here too if there is only 2 submit types.
+        elif request.POST.get("mo_gieng"):
             message_dieu_khien = "mo"
             print("mo gieng")
-        elif request.POST.get("dong_gieng"):  # You can use else in here too if there is only 2 submit types.
+        elif request.POST.get("dong_gieng"):
             message_dieu_khien = "dong"
             print("dong gieng")
     
