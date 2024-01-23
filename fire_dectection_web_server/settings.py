@@ -26,9 +26,9 @@ SECRET_KEY = "django-insecure-)+$rec&qb%)@(a+yr93eoa=+td%zmnab9q3zwwy1y3gdw%tu%e
 DEBUG = True
 
 # ALLOWED_HOSTS = []
-ALLOWED_HOSTS = ["7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app"]
+# ALLOWED_HOSTS = ["7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app"]
 
-CSRF_TRUSTED_ORIGINS = ['https://7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app']
+# CSRF_TRUSTED_ORIGINS = ['https://7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app']
 
 # Application definition
 
@@ -130,11 +130,11 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # JAZZZMIN SETTING
 
 JAZZMIN_SETTINGS = {
-    "site_title": "Feedback Form",
+    "site_title": "Giếng trời thông minh",
     # "site_icon": None,
-    "site_header": "Feedback Form",
+    "site_header": "Giếng trời thông minh",
     # "site_brand": "Feedback",
     # "site_logo": None,
-    "welcome_sign": "Welcome to Feedback Site",
+    "welcome_sign": "Giếng trời thông minh",
     # "site_logo": None,
 }
