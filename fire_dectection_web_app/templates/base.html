@@ -202,8 +202,26 @@
                 }
                 #toast{
                     position: fixed;
+                    top: 5vh;
+                    left: calc(10vh + 10vw);
                     width: 50vw;
                     height: 8vh;
+                    animation: SlideInRight ease .5s, FadeOut linear 1s 2s forwards;
+                }
+                @keyframes SlideInRight{
+                from{
+                    opacity: 0;
+                    transform: translateY(-10vh);
+                }
+                to{
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+                }
+                @keyframes FadeOut{
+                    to{
+                        opacity: 0;
+                    }
                 }
             }
         </style>
