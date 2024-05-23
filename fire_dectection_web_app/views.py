@@ -9,6 +9,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.template import loader
 from django.urls import reverse
 from server_smart_skylight import  server
+# from real_time_fire_detection import fire_detection
 
 def LoginPage(request):
     if request.method=='POST':
@@ -31,9 +32,11 @@ def LogoutPage(request):
     return redirect('login')
 
 
-# @login_required(login_url='login')
-def dashboard(request):
 
+@login_required(login_url='login')
+def dashboard(request):
+    mess = ""
+    # run_real_time_fire = fire_detection
     data = next(server())
     temperature = data["temperature"]
     humidity = data["humidity"]
@@ -97,16 +100,16 @@ def dashboard(request):
     
 
         
-    # print(message == "" and int(ultrasonic) < 36)
-    if message == 'lua'and int(float(ultrasonic)) > 36:
-        message = "Nhà đang có cháy"
-    elif message == "" and int(float(ultrasonic)) < 36:
-        message = "Có trộm đột nhập"
-    elif message == 'lua' and int(float(ultrasonic)) < 36:
-        message = "Nhà đang có cháy và có trộm đột nhập"
-    elif  message == "" and int(float(ultrasonic)) > 36:
-        message = "An toàn"
+    # print(message == "" and int(ultrasonic) < 37)
+    if message == 'lua'and int(float(ultrasonic)) > 37:
+        mess = "Nhà đang có cháy"
+    elif message == "" and int(float(ultrasonic)) < 37:
+        mess = "Có trộm đột nhập"
+    elif message == 'lua' and int(float(ultrasonic)) < 37:
+        mess = "Nhà đang có cháy và có trộm đột nhập"
+    elif  message == "" and int(float(ultrasonic)) > 37:
+        mess = "An toàn"
     
     # return render(request, 'dashboard.html', {'temp': data})
-    return render(request, 'dashboard.html', {'temp': temperature, 'hum': humidity,'mess': message, 'message_thoi_tiet': message_thoi_tiet, 'message_thoi_diem': message_thoi_diem})
+    return render(request, 'dashboard.html', {'temp': temperature, 'hum': humidity,'mess': mess, 'message_thoi_tiet': message_thoi_tiet, 'message_thoi_diem': message_thoi_diem})
     # return render(request, 'dashboard.html', {'temp': temperature, 'hum': humidity, 'photores': photoresistor, 'rain': rain, 'ultrasonic': ultrasonic, 'mode_dieu_khien': string_mode_dieu_khien ,'mess': message})

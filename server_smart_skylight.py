@@ -3,59 +3,30 @@ import time
 from email.message import EmailMessage
 import ssl
 import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.image import MIMEImage
 
 
-
-start_ip = 1
-end_ip = 255
-host = "192.168.1.3"  # ESP32 IP in local network
-port = 8090  # ESP32 Server Port
-sock = socket.socket()
-try:
-    sock.connect((host, port))
-except:
-    connection_established = False
-    if not connection_established:
-        for i in range(start_ip, end_ip + 1):
-        # Construct the current IP address
-            host = f"192.168.1.{i}"
-
-            # Create a socket and attempt to connect
-            sock = socket.socket()
-            sock.settimeout(1)  # Set a timeout for the connection attempt
-            try:
-                sock.connect((host, port))
-                print(f"Connected to {host}:{port}")
-                saving_host = host
-                connection_established = True
-                # Perform any additional actions if the connection is successful
-                # For example, you might break out of the loop or send/receive data
-                break
-            except socket.error as e:
-                # Connection failed, continue to the next IP address
-                print(f"Connection to {host} failed: {e}")
-            finally:
-                sock.close()
 def server():
     count = 0
     email_sender = "bennohz554@gmail.com" #Email người gửi
-    email_password = "mknl hvwq kchb wooh" #Nhập pass của tụi em vô đợt anh có làm cho tụi em 
-    email_receiver = "nguyengiaphucvl2019@gmail.com" #Email người nhận
+    email_password = "sxsr winn thun opiv" #Nhập pass của tụi em vô đợt anh có làm cho tụi em 
+    # email_receiver = "nguyengiaphucvl2019@gmail.com" #Email người nhận
+    email_receiver = ["nguyengiaphucvl2019@gmail.com","bennohz554@gmail.com","vndang00@gmail.com"] #Email người nhận
 
     subject = "Cảnh báo hiện phát hiện cháy"
-    body = """
-    Cảnh báo hiện tại phát hiện đám cháy tại nhà bạn cần xem xét kỹ lưỡng sao đó gọi cho 114
-    """
-    em = EmailMessage()
-    em["From"] = email_sender
-    em["To"] = email_receiver
-    em["subject"] = subject
-    em.set_content(body)
-
-    context = ssl.create_default_context()
     
+    msg = MIMEMultipart()
+    # msg["To"] = email_receiver
+    msg["To"] = ", ".join(email_receiver)
+    msg["From"] = email_sender
+    msg["subject"] = subject
+
     while True:
         # Initialize variables
+        saving_host = "172.20.10.3"
+        port = 8090  # ESP32 Server Port
         sock = socket.socket()
         sock.connect((saving_host, port))
         while True:
@@ -110,6 +81,15 @@ def server():
                 sock.send(message_dieu_khien_encode)
                 print(message_encode)
             if message == "lua":
+                msg_ready = MIMEText('Cảnh báo hiện tại phát hiện đám cháy tại nhà bạn cần xem xét kỹ lưỡng sao đó gọi cho 114')
+
+                image_open = open('fire_detect_image.jpg', 'rb').read()
+                image_ready = MIMEImage(image_open,'jpg', name = 'Nguon chay')
+
+                msg.attach(msg_ready)
+                msg.attach(image_ready)
+
+                context = ssl.create_default_context()
                 with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as smtp:
                     smtp.login(email_sender, email_password)
             yield listdata

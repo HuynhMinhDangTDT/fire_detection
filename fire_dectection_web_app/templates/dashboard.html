@@ -185,7 +185,7 @@
             bottom: 20px;     
             margin-left: 20px;
             font-weight: 700;
-            color: black;
+            color: white;
         }
         #time{
             position: fixed;
@@ -197,6 +197,7 @@
             border-radius: 10px;
             border-style: hidden;
             text-align: center;
+            color: white;
         }
         .font{
             font-weight: 600;
@@ -287,7 +288,7 @@
                 <label class="fs-3"><strong>Độ ẩm</strong></label>
                 <ul class="list">
                     <li><div class="icon_2"></div></li>
-                    <li><div class="fs-4" ><label class = "form-check-label" for = "validateFormCheck1" name = "hum">Độ ẩm hiện tại: {{ hum }} Fh</label></div></li>
+                    <li><div class="fs-4" ><label class = "form-check-label" for = "validateFormCheck1" name = "hum">Độ ẩm hiện tại: {{ hum }} Rh</label></div></li>
                 </ul>
             </div>
             <div class="box box2">
@@ -319,9 +320,9 @@
     {% endblock %}
     <script>
         window.setTimeout(function () {
-            location.href = "http://127.0.0.1:8000/dashboard/";
-            // location.href = "https://7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app/dashboard/";
-        }, 500); // refresh/redirect after 5 seconds.
+            location.href = "http://127.0.0.1:8000/giam_sat_gieng_troi/";
+            //location.href = "https://bc4e-125-235-188-41.ngrok-free.app/giam_sat_gieng_troi/";
+        }, 200); // refresh/redirect after 5 seconds.
         function dongho() {
             var time = new Date();
             var gio = time.getHours();

@@ -25,10 +25,11 @@ SECRET_KEY = "django-insecure-)+$rec&qb%)@(a+yr93eoa=+td%zmnab9q3zwwy1y3gdw%tu%e
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = []
-# ALLOWED_HOSTS = ["7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app"]
+# ALLOWED_HOSTS = ["cc88-14-191-98-59.ngrok-free.app","127.0.0.1"]
+# ALLOWED_HOSTS = ["bc4e-125-235-188-41.ngrok-free.app"]
 
-# CSRF_TRUSTED_ORIGINS = ['https://7ddb-2402-800-63fb-80dc-9470-413f-71ba-3595.ngrok-free.app']
+
+# CSRF_TRUSTED_ORIGINS = ['https://bc4e-125-235-188-41.ngrok-free.app']
 
 # Application definition
 
@@ -126,8 +127,6 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-
-# JAZZZMIN SETTING
 
 JAZZMIN_SETTINGS = {
     "site_title": "Giếng trời thông minh",
