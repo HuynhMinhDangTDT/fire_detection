@@ -19,6 +19,16 @@ def fire_detection(url_yolov5, path_weight, current_camera):
     model = torch.hub.load(
         url_yolov5, "custom", path=path_weight, source="local", force_reload=True
     )
+    USERNAME = "admin"
+    PASSWORD = "ZSLHOS"
+    IP = "192.168.1.100"
+    PORT = "554"
+
+    URL = "rtsp://{}:{}@{}:{}/onvif1".format(USERNAME, PASSWORD, IP, PORT)
+    cap1 = cv2.VideoCapture(URL, cv2.CAP_FFMPEG)
+    cap2 = cv2.VideoCapture(0)
+
+    current_camera = cap1
     
     CLASSES = ["lua"]
     
@@ -77,7 +87,11 @@ def fire_detection(url_yolov5, path_weight, current_camera):
                     (255, 255, 0),
                     1,
                 )
-
+                message = "lua"
+                try:
+                    os.remove("log.txt")
+                except:
+                    pass
                 try:
                     # img_name = "opencv_frame_{}.png".format(img_counter)
                     img_name = "fire_detect_image.jpg"
@@ -86,22 +100,38 @@ def fire_detection(url_yolov5, path_weight, current_camera):
                     print("{} written!".format(img_name))
                     img_counter += 1
                     with open("log.txt", "w") as f:
-                        f.write("lua" if acuracy * 100 > 70 else "")
+                        # f.write("lua" if acuracy * 100 > 70 else "")
+                        f.write(message)
+                except:
+                    pass
+            else:
+                message = ""
+                try:
+                    os.remove("log.txt")
+                except:
+                    pass
+                try:
+                    with open("log.txt", "w") as f:
+                        # f.write("lua" if acuracy * 100 > 70 else "")
+                        f.write(message)
                 except:
                     pass
 
         cv2.imshow("result", frame)
         if cv2.waitKey(10) & 0xFF == ord("q"):
+            os.remove("log.txt")
             break
-
+    
     current_camera.release()
+    os.remove("log.txt")
+    cv2.destroyAllWindows()
 
 if __name__ == "__main__":
     url_yolov5 = "D:\\Desktop_data\\local_code\\thay_linh\\python_socket_sever_for_esp32_from_git\\yolov5"
     path_weight = "runs/train/exp7/weights/best.pt"
     USERNAME = "admin"
     PASSWORD = "ZSLHOS"
-    IP = "172.20.10.6"
+    IP = "192.168.1.100"
     PORT = "554"
 
     URL = "rtsp://{}:{}@{}:{}/onvif1".format(USERNAME, PASSWORD, IP, PORT)
